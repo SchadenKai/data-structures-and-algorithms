@@ -16,15 +16,20 @@ def breadth_first(graph, src, dest):
         
         # count the number of steps taken to find the target
         count+=1
-        
+        # remove the node from the queue which will be the subject for the goal test
+        # this eliminates to need to utilize further storage for the frontier 
         curr = search_queue.popleft()
         # if the current node is not in the searched list, add it to the queue / frontier 
         if curr not in searched:
+            # goal test
             if curr == dest: 
                 return("Found the target: " + curr + " in " + str(count) + " steps")
+            # if goal test fails, add the neighboring nodes to the frontier / expand
+            # add the failed nodes to the list of already searched nodes
             else: 
                 search_queue += (graph[curr])
                 searched.append(curr)
+    # if the frontier is empty and the goal is not found, return not found
     return("Not found: " + dest)
         
 relationships = {
