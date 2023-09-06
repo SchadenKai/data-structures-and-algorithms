@@ -4,7 +4,8 @@ def breadth_first(graph, src, dest):
     # search queue = frontier 
     # this is the queue of nodes to be searched
     search_queue = deque()
-    # this list represents the searched nodes 
+    # this list represents the searched nodes, resolving the issue of infinite loops from bidirectional edges
+    # this contains the nodes that are removed from the frontier
     searched = []
     # use += operator for inserting elements, not the whole list
     # start with the initial state / source node
@@ -32,6 +33,7 @@ def breadth_first(graph, src, dest):
     # if the frontier is empty and the goal is not found, return not found
     return("Not found: " + dest)
         
+# initialize the directed graph using adjacency list representation
 relationships = {
     "Alice": ["Bob", "Charlie"],
     "Bob": ["David", "Eve"],
@@ -41,5 +43,6 @@ relationships = {
     "Frank": ["Grace"],
     "Grace": []
 }
+
 
 print(breadth_first(relationships, "Alice", "David"))
